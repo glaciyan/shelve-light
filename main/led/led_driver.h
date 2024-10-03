@@ -8,6 +8,8 @@
 
 #include "led_strip_encoder.h"
 
+#include "ledc_util.h"
+
 namespace led
 {
     static const char *TAG = "ws2812_driver";
@@ -56,6 +58,25 @@ namespace led
         constexpr void joinAll() const
         {
             ESP_ERROR_CHECK(rmt_tx_wait_all_done(led_chan, portMAX_DELAY));
+        }
+    };
+}
+
+namespace ledc
+{
+    constexpr int LEDC_BASE_FREQ = 5000;
+
+    template <uint8_t gpioPin>
+    struct Driver
+    {
+        constexpr Driver()
+        {
+            ledcAttach(gpioPin, LEDC_BASE_FREQ, LEDC_TIMER_12_BIT);
+        }
+
+        constexpr void transmit(uint32_t value, uint32_t valueMax) const
+        {
+            ledcAnalogWrite(gpioPin, value, valueMax);
         }
     };
 }
