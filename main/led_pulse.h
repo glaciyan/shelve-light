@@ -3,7 +3,7 @@
 #include "Arduino.h"
 #include "ledc_util.h"
 #include "functions.h"
-#include <thread>
+#include "sleep_util.h"
 
 #define BLUE_LED_PIN 7
 #define LEDC_BASE_FREQ 5000
@@ -20,6 +20,6 @@ void pulseTask(void *parameters)
         TickType_t time = xTaskGetTickCount();
         uint32_t brightness = zigzag(time, period, amplitude);
         ledcAnalogWrite(BLUE_LED_PIN, brightness, amplitude);
-        std::this_thread::sleep_for(std::chrono::milliseconds(16));
+        SLEEP(16);
     }
 }

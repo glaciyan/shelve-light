@@ -8,7 +8,7 @@
 
 #include "led_strip_encoder.h"
 
-namespace ws2812
+namespace led
 {
     static const char *TAG = "ws2812_driver";
 

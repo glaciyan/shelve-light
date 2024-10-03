@@ -5,7 +5,7 @@
 
 #include "color_util.h"
 
-namespace ws2812
+namespace led
 {
     struct Pixel final
     {
