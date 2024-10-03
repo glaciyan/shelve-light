@@ -2,3 +2,4 @@
 | ----------------- | -------- |
 
 # LED Controller
+For M5Stack NanoC6
