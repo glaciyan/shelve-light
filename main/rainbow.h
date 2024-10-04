@@ -6,16 +6,12 @@
 #include "sleep_util.h"
 
 #define PWR_PIN 19 // power pin for rgb led
-constexpr gpio_num_t RGBLED_PIN = GPIO_NUM_20;
 #define LED_COUNT 1
-#define LED_SIZE 24 * LED_COUNT
+constexpr gpio_num_t RGBLED_PIN = GPIO_NUM_20;
 
 static const char *RAINBOW_TAG = "rainbow";
 
-rmt_data_t led_data[LED_SIZE]; // Array to store the pulse sequence data
-float hue = 0.0;               // Hue value for the rainbow animation
-
-void rgbLedTask(void *parameters)
+[[noreturn]] void rgbLedTask(void *parameters)
 {
     ESP_LOGI(RAINBOW_TAG, "Writing UP to PWR pin");
     pinMode(PWR_PIN, OUTPUT);

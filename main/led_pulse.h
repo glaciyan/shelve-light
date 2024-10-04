@@ -7,7 +7,7 @@
 
 constexpr uint8_t BLUE_LED_PIN = GPIO_NUM_7;
 
-void pulseTask(void *parameters)
+[[noreturn]] void pulseTask(void *parameters)
 {
     const uint32_t period = 1000;   // Controls the speed of brightness cycle
     const uint32_t amplitude = 255; // Max brightness value (0-255)
